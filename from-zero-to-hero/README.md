@@ -155,17 +155,18 @@ First, we will adapt the workflow to become an agent. For that, we will use the 
 
 We will use the `AI Toolkit` extension to generate tracing configuration. Open the agent under `orchestration/tracing/group_chat_agent_manager_as_agent.py` and enable tracing using the helper from the extension (you can also apply it to the sequential_agents_as_agent.py if you want): 
 
-TODO: add image
+![AI Toolkit Traces Enable](images/aitoolkitraces-enable.png)
+
 
 The extension will use Github Copilot to generate the tracing configuration code:
 
-TODO: add image
+![AI Toolkit Traces Configuration](images/aitoolkitraces-copilot.png)
 
 ### Run and test locally
 
 We will now use the `Microsoft Foundry` extension to test the agent and explore traces. First, open the Microsoft Foundry extension and start the Local Agent Playground.
 
-TODO: add image
+![Microsoft Foundry Local Agent Playground](images/localplayground.png)
 
 Then, run the traced agent locally:
 
@@ -175,7 +176,7 @@ python orchestration/tracing/solution/group_chat_agent_manager_as_agent.py
 
 Test it using the Local Agent Playground from the Microsoft Foundry extension and see the agent run and traces:
 
-TODO: add image
+![Microsoft Foundry Local Traces](images/localtraces.png)
 
 Alternatively, you can test it using curl:
 
@@ -195,7 +196,7 @@ Once we have the workflow as agent tested locally and ready to be deploy as `hos
 2. Navigate to **Operate** → **Admin** → *your project* → **Connected Resources** → **Application Insights**
 3. Connect the Application Insights resource created in the infrastructure step
 
-TODO: add image
+![Application Insights Connected Resource](images/appinsightsconfig.png)
 
 
 ## Deploy as hosted agent
@@ -236,7 +237,8 @@ To avoid this, you can copy the content from `orchestration/hosted/groupchat/.fo
 
 In the Local Agent Playground from the Microsoft Foundry extension, click on `Deploy` and select the folder `orchestration/hosted/groupchat`. This will build the container image and deploy it as a hosted agent in Foundry:
 
-TODO: add image
+![Deploy hosted agent](images/deployhosted.png)
+
 
 It takes a few minutes to build and deploy the agent. Once it's deployed, you can see it in the Foundry portal under Agents.
 
@@ -244,7 +246,7 @@ It takes a few minutes to build and deploy the agent. Once it's deployed, you ca
 
 You can now test the hosted agent from the portal or even better, from the Hosted Agent Playground in the Microsoft Foundry extension, select the `groupchatwriter` or `sequentialwriter` agent and version to finally test it with a prompt:
 
-TODO: add image
+![Hosted Agent Playground](images/hostedextensionplayground.png)
 
 
 Optionally, you can also test it using the responses endpoint as before, just changing the AGENT_NAME to the name of the hosted agent. Remember that you must publish the hosted agent in Foundry portal first.
@@ -255,12 +257,12 @@ export AGENT_NAME=groupchatwriter
 python agents-client/agent_client.py "Write a short article about the latest AI trends."
 ```
 
-### Explore traces
+### Explore traces in Microsoft Foundry
 
 Under the `Traces` tab, click on the `Trace ID` and you would see a similar output to this:
 
-TODO: add image
+![Traces in Foundry](images/foundrytraces.png)
 
 You can also explore the metrics directly from Application Insights:
 
-TODO: add image
+![Metrics in App Insights](images/appinsights-metrics.png)
