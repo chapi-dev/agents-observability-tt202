@@ -6,10 +6,10 @@
       "value": "northcentralus" 
     },
     "aiServicesName": {
-      "value": "tc2026dr"
+      "value": "tc2026"
     },
     "projectName": {
-      "value": "techconnect2026ncusdr"
+      "value": "techconnect2026ncus"
     },
     "modelName": {
       "value": "gpt-4.1"
@@ -21,7 +21,7 @@
       "value": "2025-04-14"
     },
     "modelSkuName": {
-      "value": "DataZoneStandard"
+      "value": "GlobalStandard"
     },
     "modelCapacity": {
       "value": 100

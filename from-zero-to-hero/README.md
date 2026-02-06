@@ -187,14 +187,18 @@ curl -X POST http://localhost:8088/responses \
 }'
 ```
 
+## Observability with Azure Monitor
 
-## Deploy as hosted agent
+Once we have the workflow as agent tested locally and ready to be deploy as `hosted agent` we will enable tracing in **Microsoft Foundry**. We need to connect your Foundry project to an Application Insights resource. The Application Insights resource was already created during the infrastructure deployment, so you just need to link it:
 
-### Observability configuration for Azure Monitor
-
-To get traces in `Microsoft Foundry`, we need to connect our Foundry project to an Application Insights resource. The application insights resource has been already created in the infrastructure deployment step, so you just need to connect it to the Foundry project. To do that, go to the Foundry portal and navigate to `Operate/Admin/<choose project>/Connected Resources/Application Insights` and connect the Application Insights resource that was created in the infrastructure step:
+1. Open the [Foundry portal](https://ai.azure.com)
+2. Navigate to **Operate** → **Admin** → *your project* → **Connected Resources** → **Application Insights**
+3. Connect the Application Insights resource created in the infrastructure step
 
 TODO: add image
+
+
+## Deploy as hosted agent
 
 ### Understand folder structure
 
