@@ -14,8 +14,9 @@ az login
 
 ```bash
 export RG=<your-resource-group>
-export LOCATION=<your-location> # one that supports hosted agents, e.g., northcentralus
+export LOCATION=<your-location>
 export AGENTS_HOME=from-zero-to-hero
+export PARAMETERS_FILE=basic-setup.parameters.json
 ```
 
 Move to `AGENTS_HOME`:
@@ -30,7 +31,7 @@ Before deploying the infra resources, check the file `infra/basic-setup.paramete
 ```bash
 az group create --name $RG --location $LOCATION
 # deployment with file parameters
-az deployment group create --resource-group $RG --template-file infra/basic-setup.bicep --parameters @infra/basic-setup.parameters.json
+az deployment group create --resource-group $RG --template-file infra/basic-setup.bicep --parameters @infra/$PARAMETERS_FILE
 ```
 
 Update env variables with outputs from deployment
@@ -60,14 +61,14 @@ export BING_PROJECT_CONNECTION_ID="/subscriptions/$SUBSCRIPTION_ID/resourceGroup
 
 ### Create venv and install the Agent Framework packages
 
-As of Feb 4, 2026, I will create two venvs:
-- venv260130 for latest MAF packages (260130)
-- venv260107 for previous MAF packages (260107) and compatible with azure-ai-agentserver-agentframework 1.0.0b10
+As of March 3rd, 2026, I will create two venvs:
+- venvrc2 for latest MAF packages (rc2)
+- venv260107 for previous MAF packages (260107) and compatible with azure-ai-agentserver-agentframework 1.0.0b15
 
 ```bash
-python3 -m venv venv260130
-source venv260130/bin/activate
-pip install -r requirements-260130.txt
+python3 -m venv venvrc2
+source venvrc2/bin/activate
+pip install -r requirements-rc2.txt
 pip list
 deactivate
 python3 -m venv venv260107
@@ -82,7 +83,7 @@ deactivate
 Activate latest venv:
 
 ```bash
-source venv260130/bin/activate
+source venvrc2/bin/activate
 ```
 
 **Using Foundry SDK**
@@ -132,7 +133,7 @@ python orchestration/demo/group_chat_agent_manager.py
 
 ## Build as Agent and trace the workflow locally
 
-As per today (Feb 4, 2026), we have to use the previous venv (260107) to build the orchestration as an agent.
+As per today (March 3rd, 2026), we have to use the previous venv (260107) to build the orchestration as an agent.
 
 Activate the previous venv:
 
@@ -200,6 +201,12 @@ Once we have the workflow as agent tested locally and ready to be deploy as `hos
 
 
 ## Deploy as hosted agent
+
+
+NOTE: Two new repositories have been created for the hosted agent code. The following instructions are good for understanding how to deploy, but if you want to skip directly to the hosted agent code, you can find it under the following repositories:
+
+- Group Chat Agent: TODO
+- Sequential Agents: https://github.com/dsanchor/sequential-orchestration-writer.git
 
 ### Understand folder structure
 
